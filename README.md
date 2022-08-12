@@ -3,13 +3,17 @@
 [![godoc](https://godoc.org/nhooyr.io/websocket?status.svg)](https://pkg.go.dev/nhooyr.io/websocket)
 [![coverage](https://img.shields.io/badge/coverage-88%25-success)](https://nhooyrio-websocket-coverage.netlify.app)
 
-websocket is a minimal and idiomatic WebSocket library for Go.
+Websocket is a minimal and idiomatic WebSocket library for Go. This is a simple fork that has updated some of the dependencies to newer versions.
 
-## Install
+## Usage
+
+To use this library, you can replace `nhooyr/websocket` in your `go.mod` file like this:
 
 ```bash
-go get nhooyr.io/websocket
+replace nhooyr.io/websocket => github.com/rymdport/websocket v1.9.0
 ```
+
+Lastly, run `go mod tidy` to update the module information.
 
 ## Highlights
 
