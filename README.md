@@ -9,7 +9,7 @@ Websocket is a minimal and idiomatic WebSocket library for Go. This is a simple 
 
 To use this library, you can replace `nhooyr/websocket` in your `go.mod` file like this:
 
-```bash
+```
 replace nhooyr.io/websocket => github.com/rymdport/websocket v1.9.0
 ```
 
