@@ -1,4 +1,4 @@
-module nhooyr.io/websocket
+module github.com/notional-labs/websocket
 
 go 1.18
 
