@@ -7,9 +7,9 @@ import (
 	"testing"
 	"time"
 
-	"nhooyr.io/websocket"
-	"nhooyr.io/websocket/internal/test/assert"
-	"nhooyr.io/websocket/internal/test/wstest"
+	"github.com/notional-labs/websocket"
+	"github.com/notional-labs/websocket/internal/test/assert"
+	"github.com/notional-labs/websocket/internal/test/wstest"
 )
 
 func TestWasm(t *testing.T) {

@@ -1,5 +1,5 @@
 // Package wspb provides helpers for reading and writing protobuf messages.
-package wspb // import "nhooyr.io/websocket/wspb"
+package wspb // import "github.com/notional-labs/websocket/wspb"
 
 import (
 	"bytes"
@@ -8,9 +8,9 @@ import (
 
 	"github.com/golang/protobuf/proto" //nolint:staticcheck
 
-	"nhooyr.io/websocket"
-	"nhooyr.io/websocket/internal/bpool"
-	"nhooyr.io/websocket/internal/errd"
+	"github.com/notional-labs/websocket"
+	"github.com/notional-labs/websocket/internal/bpool"
+	"github.com/notional-labs/websocket/internal/errd"
 )
 
 // Read reads a protobuf message from c into v.

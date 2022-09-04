@@ -12,8 +12,8 @@ import (
 	"strings"
 	"time"
 
-	"nhooyr.io/websocket/internal/errd"
-	"nhooyr.io/websocket/internal/xsync"
+	"github.com/notional-labs/websocket/internal/errd"
+	"github.com/notional-labs/websocket/internal/xsync"
 )
 
 // Reader reads from the connection until there is a WebSocket
