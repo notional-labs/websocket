@@ -122,8 +122,7 @@ func (c *netConn) Read(p []byte) (int, error) {
 	return n, err
 }
 
-type websocketAddr struct {
-}
+type websocketAddr struct{}
 
 func (a websocketAddr) Network() string {
 	return "websocket"
@@ -142,16 +141,22 @@ func (c *netConn) LocalAddr() net.Addr {
 }
 
 func (c *netConn) SetDeadline(t time.Time) error {
-	c.SetWriteDeadline(t)
-	c.SetReadDeadline(t)
-	return nil
+	err := c.SetWriteDeadline(t)
+	if err != nil {
+		return err
+	}
+	err = c.SetReadDeadline(t)
+	if err != nil {
+		return err
+	}
+	return err
 }
 
 func (c *netConn) SetWriteDeadline(t time.Time) error {
 	if t.IsZero() {
 		c.writeTimer.Stop()
 	} else {
-		c.writeTimer.Reset(t.Sub(time.Now()))
+		c.writeTimer.Reset(time.Until(t))
 	}
 	return nil
 }
@@ -160,7 +165,7 @@ func (c *netConn) SetReadDeadline(t time.Time) error {
 	if t.IsZero() {
 		c.readTimer.Stop()
 	} else {
-		c.readTimer.Reset(t.Sub(time.Now()))
+		c.readTimer.Reset(time.Until(t))
 	}
 	return nil
 }

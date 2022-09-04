@@ -1,3 +1,4 @@
+//go:build !js
 // +build !js
 
 package websocket
@@ -384,7 +385,7 @@ func extractBufioWriterBuf(bw *bufio.Writer, w io.Writer) []byte {
 		return len(p2), nil
 	}))
 
-	bw.WriteByte(0)
+	bw.WriteByte(0) //nolint:errcheck
 	bw.Flush()
 
 	bw.Reset(w)

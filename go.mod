@@ -10,4 +10,5 @@ require (
 	github.com/gorilla/websocket v1.5.0
 	github.com/klauspost/compress v1.15.9
 	golang.org/x/time v0.0.0-20220722155302-e5dcc9cfc0b9
+	google.golang.org/protobuf v1.28.0
 )

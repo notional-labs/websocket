@@ -1,3 +1,4 @@
+//go:build !js
 // +build !js
 
 package websocket_test
@@ -174,7 +175,7 @@ func TestConn(t *testing.T) {
 			return n2.Close()
 		})
 
-		b, err := ioutil.ReadAll(n1)
+		b, err := io.ReadAll(n1)
 		assert.Success(t, err)
 
 		_, err = n1.Read(nil)
@@ -380,7 +381,7 @@ func (tt *connTest) goDiscardLoop(c *websocket.Conn) {
 }
 
 func BenchmarkConn(b *testing.B) {
-	var benchCases = []struct {
+	benchCases := []struct {
 		name string
 		mode websocket.CompressionMode
 	}{

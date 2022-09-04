@@ -1,3 +1,4 @@
+//go:build !js
 // +build !js
 
 package websocket_test
@@ -6,7 +7,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net"
 	"os"
 	"os/exec"
@@ -117,7 +118,8 @@ func wstestClientServer(ctx context.Context) (url string, closeFn func(), err er
 		}
 	}()
 
-	args := []string{"--mode", "fuzzingserver", "--spec", specFile,
+	args := []string{
+		"--mode", "fuzzingserver", "--spec", specFile,
 		// Disables some server that runs as part of fuzzingserver mode.
 		// See https://github.com/crossbario/autobahn-testsuite/blob/058db3a36b7c3a1edf68c282307c6b899ca4857f/autobahntestsuite/autobahntestsuite/wstest.py#L124
 		"--webport=0",
@@ -146,7 +148,7 @@ func wstestCaseCount(ctx context.Context, url string) (cases int, err error) {
 	if err != nil {
 		return 0, err
 	}
-	b, err := ioutil.ReadAll(r)
+	b, err := io.ReadAll(r)
 	if err != nil {
 		return 0, err
 	}
@@ -161,7 +163,7 @@ func wstestCaseCount(ctx context.Context, url string) (cases int, err error) {
 }
 
 func checkWSTestIndex(t *testing.T, path string) {
-	wstestOut, err := ioutil.ReadFile(path)
+	wstestOut, err := os.ReadFile(path)
 	assert.Success(t, err)
 
 	var indexJSON map[string]map[string]struct {
@@ -206,7 +208,7 @@ func unusedListenAddr() (_ string, err error) {
 }
 
 func tempJSONFile(v interface{}) (string, error) {
-	f, err := ioutil.TempFile("", "temp.json")
+	f, err := os.CreateTemp("", "temp.json")
 	if err != nil {
 		return "", fmt.Errorf("temp file: %w", err)
 	}
