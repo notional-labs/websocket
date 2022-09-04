@@ -15,7 +15,7 @@ import (
 
 	"github.com/klauspost/compress/flate"
 
-	"nhooyr.io/websocket/internal/errd"
+	"github.com/notional-labs/websocket/internal/errd"
 )
 
 var errClosedWriter = errors.New("cannot use closed writer")

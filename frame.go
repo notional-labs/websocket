@@ -8,7 +8,7 @@ import (
 	"math"
 	"math/bits"
 
-	"nhooyr.io/websocket/internal/errd"
+	"github.com/notional-labs/websocket/internal/errd"
 )
 
 // opcode represents a WebSocket opcode.
