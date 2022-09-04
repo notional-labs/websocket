@@ -55,7 +55,7 @@ func TestHeader(t *testing.T) {
 
 		r := rand.New(rand.NewSource(time.Now().UnixNano()))
 		randBool := func() bool {
-			return r.Intn(1) == 0
+			return r.Intn(1) == 0 //nolint:staticcheck
 		}
 
 		for i := 0; i < 10000; i++ {

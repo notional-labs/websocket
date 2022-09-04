@@ -6,7 +6,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/golang/protobuf/proto"
+	"github.com/golang/protobuf/proto" //nolint:staticcheck
 
 	"nhooyr.io/websocket"
 	"nhooyr.io/websocket/internal/bpool"

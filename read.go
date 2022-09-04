@@ -57,7 +57,7 @@ func (c *Conn) CloseRead(ctx context.Context) context.Context {
 	ctx, cancel := context.WithCancel(ctx)
 	go func() {
 		defer cancel()
-		c.Reader(ctx)
+		c.Reader(ctx) //nolint:errcheck
 		c.Close(StatusPolicyViolation, "unexpected data message")
 	}()
 	return ctx

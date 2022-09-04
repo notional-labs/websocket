@@ -8,7 +8,6 @@ import (
 	"context"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -18,7 +17,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/golang/protobuf/ptypes"
+	"github.com/golang/protobuf/ptypes" //nolint:staticcheck
 	"github.com/golang/protobuf/ptypes/duration"
 
 	"nhooyr.io/websocket"
@@ -160,8 +159,8 @@ func TestConn(t *testing.T) {
 
 		// Does not give any confidence but at least ensures no crashes.
 		d, _ := tt.ctx.Deadline()
-		n1.SetDeadline(d)
-		n1.SetDeadline(time.Time{})
+		n1.SetDeadline(d)           //nolint:errcheck
+		n1.SetDeadline(time.Time{}) //nolint:errcheck
 
 		assert.Equal(t, "remote addr", n1.RemoteAddr(), n1.LocalAddr())
 		assert.Equal(t, "remote addr string", "websocket/unknown-addr", n1.RemoteAddr().String())
@@ -206,7 +205,7 @@ func TestConn(t *testing.T) {
 			return nil
 		})
 
-		_, err := ioutil.ReadAll(n1)
+		_, err := io.ReadAll(n1)
 		assert.Contains(t, err, `unexpected frame type read (expected MessageBinary): MessageText`)
 
 		select {
@@ -253,7 +252,7 @@ func TestConn(t *testing.T) {
 
 		tt.goEchoLoop(c2)
 
-		exp := ptypes.DurationProto(100)
+		exp := ptypes.DurationProto(100) //nolint:staticcheck
 		err := wspb.Write(tt.ctx, c1, exp)
 		assert.Success(t, err)
 

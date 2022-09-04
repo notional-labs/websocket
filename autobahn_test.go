@@ -93,7 +93,7 @@ func waitWS(ctx context.Context, url string) error {
 	return ctx.Err()
 }
 
-func wstestClientServer(ctx context.Context) (url string, closeFn func(), err error) {
+func wstestClientServer(ctx context.Context) (url string, closeFn func(), err error) { //nolint:staticcheck
 	serverAddr, err := unusedListenAddr()
 	if err != nil {
 		return "", nil, err
@@ -111,7 +111,7 @@ func wstestClientServer(ctx context.Context) (url string, closeFn func(), err er
 		return "", nil, fmt.Errorf("failed to write spec: %w", err)
 	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), time.Minute*15)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Minute*15) //nolint:staticcheck
 	defer func() {
 		if err != nil {
 			cancel()
@@ -131,7 +131,7 @@ func wstestClientServer(ctx context.Context) (url string, closeFn func(), err er
 	}
 
 	return url, func() {
-		wstest.Process.Kill()
+		wstest.Process.Kill() //nolint:errcheck
 	}, nil
 }
 

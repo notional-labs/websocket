@@ -159,7 +159,7 @@ func (sw *slidingWindow) close() {
 	}
 
 	swPoolMu.Lock()
-	swPool[cap(sw.buf)].Put(sw.buf)
+	swPool[cap(sw.buf)].Put(sw.buf) //nolint:staticcheck
 	swPoolMu.Unlock()
 	sw.buf = nil
 }
